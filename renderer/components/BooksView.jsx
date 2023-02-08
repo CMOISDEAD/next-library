@@ -12,7 +12,11 @@ export const BooksView = ({ books }) => {
       </div>
       <div className="flex flex-row justify-start gap-4 overflow-auto">
         {books.map((book, i) => {
-          return <Book {...book} key={i} />;
+          return (
+            <div className="w-[14.6vw]" key={i}>
+              <Book {...book} />
+            </div>
+          );
         })}
       </div>
     </>

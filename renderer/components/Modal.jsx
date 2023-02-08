@@ -3,22 +3,26 @@ import React, { useState } from "react";
 import { useStore } from "../store/store";
 import { Book } from "./Book";
 
-export const Modal = ({ trigger_id }) => {
-  const ipcRenderer = electron.ipcRenderer || false;
-  const [book, setBook] = useState({});
-  const store = useStore();
+const ipcRenderer = electron.ipcRenderer || false;
 
+export const Modal = ({ trigger_id }) => {
+  const [book, setBook] = useState({});
+  const store = useStore(); // store from zustand
+
+  // manage the inputs changes
   const handleChange = (e) => {
     e.preventDefault();
     setBook({ ...book, [e.target.name]: e.target.value });
   };
 
+  // manage the pdf path
   const handlePath = (e) => {
     e.preventDefault();
     const { name: _title, path } = e.target.files[0];
     setBook({ ...book, path });
   };
 
+  // add the book to the local state and the app storage
   const addBook = (e) => {
     e.preventDefault();
     // add to electron storage

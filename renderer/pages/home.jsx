@@ -1,21 +1,22 @@
 import electron from "electron";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
 import { BooksView } from "../components/BooksView";
 import { BookList } from "../components/BookList";
 import { useStore } from "../store/store";
+import { shallow } from "zustand/shallow";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
 function Home() {
-  const [books, setBooks] = useState([{}]);
+  const { books } = useStore((state) => ({ books: state.books }), shallow);
+
   // If we use ipcRenderer in this scope, we must check the instance exists
   if (ipcRenderer) {
     // In this scope, the webpack process is the client
   }
 
   useEffect(() => {
-    setBooks(ipcRenderer.sendSync("get-books"));
     useStore.setState({ books: ipcRenderer.sendSync("get-books") });
     return () => {
       // unregister it, when unmount the component

@@ -4,6 +4,7 @@ import React from "react";
 const shell = electron.shell;
 
 export const Book = ({ image, title, author, year, category, path }) => {
+  // Open the book with an external application
   const handleOpen = (e) => {
     e.preventDefault();
     shell.openExternal(`file://${path}`);
