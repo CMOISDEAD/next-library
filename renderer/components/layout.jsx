@@ -6,8 +6,8 @@ const Layout = ({ children }) => {
   return (
     <div data-theme="black">
       <Header />
-      <div className="min-h-[81.5vh]">
-        <div className="container mx-auto py-5">{children}</div>
+      <div className="min-h-screen">
+        <div className="container mx-auto py-16">{children}</div>
       </div>
       <Footer />
     </div>

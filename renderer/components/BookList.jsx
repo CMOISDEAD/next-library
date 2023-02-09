@@ -11,7 +11,7 @@ export const BookList = ({ books }) => {
           ~ Look all your magic books
         </span>
       </div>
-      <div className="grid grid-cols-6 grid-flow-row gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 grid-flow-row gap-4">
         {books.map((book, i) => {
           return <Book {...book} key={i} />;
         })}

@@ -6,7 +6,12 @@ import { Book } from "./Book";
 const ipcRenderer = electron.ipcRenderer || false;
 
 export const Modal = ({ trigger_id }) => {
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState({
+    title: "",
+    author: "",
+    category: "Mathematics",
+    path: "",
+  });
   const store = useStore(); // store from zustand
 
   // manage the inputs changes
@@ -92,55 +97,60 @@ export const Modal = ({ trigger_id }) => {
               <select
                 className="select select-bordered"
                 name="category"
-                defaultValue="void"
                 onChange={handleChange}
               >
-                <option disabled selected>
-                  Pick one
-                </option>
-                <option>Mathematics</option>
+                <option disabled>Pick one</option>
+                <option defaultValue>Mathematics</option>
                 <option>Computer Science</option>
                 <option>Science</option>
               </select>
             </div>
-            <div className="inline-flex gap-2">
-              {/* image */}
-              <div className="form-control w-full max-w-xs">
-                <label className="label">
-                  <span className="label-text">Pick a book cover</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="url image"
-                  name="image"
-                  className="input input-bordered w-full max-w-xs"
-                  onChange={handleChange}
-                />
-              </div>
-              {/* path */}
-              <div className="form-control w-full max-w-xs mb-2">
-                <label className="label">
-                  <span className="label-text">Pick a book file</span>
-                </label>
-                <input
-                  type="file"
-                  className="file-input file-input-bordered w-full max-w-xs"
-                  name="path"
-                  onChange={handlePath}
-                />
-              </div>
+            {/* image */}
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Pick a book cover</span>
+              </label>
+              <input
+                type="text"
+                placeholder="url image"
+                name="image"
+                className="input input-bordered w-full max-w-xs"
+                onChange={handleChange}
+              />
             </div>
           </div>
           {/* preview */}
           <div className="flex-1">
             <h3 className="text-lg font-bold">Book Preview</h3>
             <p className="py-4">This is gonna looks like.</p>
-            <div className="w-auto h-auto">
+            <div className="max-w-[30vw] h-auto">
               <Book {...book} />
             </div>
-            <button className="btn mt-2" onClick={addBook}>
+            {/* path */}
+            <div className="form-control w-full max-w-xs mb-2">
+              <label className="label">
+                <span className="label-text">Pick a book file</span>
+              </label>
+              <input
+                type="file"
+                className="file-input file-input-bordered w-full max-w-xs"
+                name="path"
+                onChange={handlePath}
+              />
+            </div>
+            <label
+              className="btn mt-2"
+              htmlFor={trigger_id}
+              // HACK: find a better way to do this
+              disabled={
+                book.title != "" && book.author != "" && book.path != ""
+                  ? false
+                  : true
+              }
+              onClick={addBook}
+            >
               Add Book
-            </button>
+            </label>
           </div>
         </div>
       </div>
