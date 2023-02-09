@@ -1,11 +1,14 @@
 import electron from "electron";
 import React from "react";
 import { useStore } from "../store/store";
-import { BookOptions } from "./BookOptions";
 
 const shell = electron.shell;
 
+const ipcRenderer = electron.ipcRenderer || false;
+
 export const Book = ({ id, image, title, author, year, category, path }) => {
+  const { recently } = useStore((state) => ({ recently: state.recently }));
+
   // Select book to show on preview section
   const handleSelect = (e) => {
     e.preventDefault();
@@ -26,6 +29,19 @@ export const Book = ({ id, image, title, author, year, category, path }) => {
   const handleOpen = (e) => {
     e.preventDefault();
     shell.openExternal(`file://${path}`);
+    // Add book to recently list, HACK:
+    const book = { id, image, title, author, year, category, path };
+    const new_recent = [...recently];
+    const exist = new_recent.find((element) => element.id == id);
+    if (exist) {
+      new_recent = new_recent.filter((element) => element.id != id);
+    }
+    new_recent.unshift(book);
+    if (new_recent.length > 4) new_recent.pop();
+    useStore.setState(() => ({
+      recently: [...new_recent],
+    }));
+    ipcRenderer.send("add-recent", [...new_recent]);
   };
 
   return (
@@ -47,7 +63,6 @@ export const Book = ({ id, image, title, author, year, category, path }) => {
           <p className="text-sm italic">{year}</p>
           <div className="flex items-center justify-center content-center gap-4">
             <p className="badge badge-secondary truncate">{category}</p>
-            <BookOptions id={id} title={title} />
           </div>
         </div>
       </div>

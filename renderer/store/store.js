@@ -6,4 +6,5 @@ export const useStore = create((set) => ({
   theme: "black",
   // current selected book
   selected: {},
+  recently: [],
 }));

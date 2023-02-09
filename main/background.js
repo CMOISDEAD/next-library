@@ -41,6 +41,17 @@ ipcMain.on("add-book", (event, arg) => {
   event.returnValue = "200";
 });
 
+ipcMain.on("add-recent", (event, arg) => {
+  const recent = arg;
+  store.set("recent", recent);
+  event.returnValue = "200";
+});
+
+ipcMain.on("get-recent", (event, arg) => {
+  const data = store.get("recent");
+  event.returnValue = data;
+});
+
 // Get the pdf file from a book
 ipcMain.on("get-pdf", async (event) => {
   const { filePaths } = await dialog.showOpenDialog({

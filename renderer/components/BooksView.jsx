@@ -11,16 +11,13 @@ export const BooksView = ({ books }) => {
         </span>
       </div>
       <div className="flex flex-row justify-start gap-4 overflow-auto">
-        {[...books]
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 4)
-          .map((book, i) => {
-            return (
-              <div className="w-[14.6vw]" key={i}>
-                <Book {...book} />
-              </div>
-            );
-          })}
+        {books.map((book, i) => {
+          return (
+            <div className="w-[14.6vw]" key={i}>
+              <Book {...book} />
+            </div>
+          );
+        })}
       </div>
     </>
   );

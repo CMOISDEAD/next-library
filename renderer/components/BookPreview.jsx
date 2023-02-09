@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
+import { BookOptions } from "./BookOptions";
 
 export const BookPreview = () => {
   const [isVisible, setVisible] = useState(true);
   const style = isVisible ? "w-4/12" : "w-[2vw]";
   const { book } = useStore((state) => ({ book: state.selected }));
-  const { image, title, author, year, category } = book;
+  const { id, image, title, author, year, category } = book;
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -13,11 +14,14 @@ export const BookPreview = () => {
   };
 
   return (
-    <div className={` bg-base-200 relative ${style} transition-all`}>
+    <div className={`bg-base-200 relative ${style} transition-all`}>
       <div className="fixed p-2 bg-base-200">
-        <p className="link" onClick={handleChange}>
-          {isVisible ? ">" : "<"}
-        </p>
+        <div className="flex gap-4 justify-between">
+          <p className="link" onClick={handleChange}>
+            {isVisible ? ">" : "<"}
+          </p>
+          <BookOptions id={id} title={title} />
+        </div>
         <div className={`my-2 ${isVisible ? "visible" : "invisible"}`}>
           <div className="flex flex-row content-center items-center justify-center">
             <img src={image} alt={title} className="h-[50vh]" />

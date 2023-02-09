@@ -5,6 +5,8 @@ import { useStore } from "../store/store";
 const ipcRenderer = electron.ipcRenderer || false;
 
 export const BookRemove = ({ id, title }) => {
+  const trigger = `remove_book_${title}`;
+
   const handleRemove = (e) => {
     e.preventDefault();
     const books = ipcRenderer.sendSync("remove-book", id);
@@ -13,15 +15,11 @@ export const BookRemove = ({ id, title }) => {
 
   return (
     <>
-      <input
-        type="checkbox"
-        id={`remove_book_${id}`}
-        className="modal-toggle"
-      />
+      <input type="checkbox" id={trigger} className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
-            htmlFor={`remove_book_${id}`}
+            htmlFor={trigger}
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -34,7 +32,7 @@ export const BookRemove = ({ id, title }) => {
           </p>
           <label
             className="btn btn-warning mt-2"
-            htmlFor={`remove_book_${id}`}
+            htmlFor={trigger}
             onClick={handleRemove}
           >
             Remove book
