@@ -13,7 +13,7 @@ export const BooksView = ({ books }) => {
       <div className="flex flex-row justify-start gap-4 overflow-auto">
         {[...books]
           .sort(() => 0.5 - Math.random())
-          .slice(0, 5)
+          .slice(0, 4)
           .map((book, i) => {
             return (
               <div className="w-[14.6vw]" key={i}>

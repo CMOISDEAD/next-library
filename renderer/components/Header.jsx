@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { Theme } from "./Theme";
 
 export const Header = () => {
   return (
@@ -47,6 +48,7 @@ export const Header = () => {
         </Link>
       </div>
       <div className="navbar-end">
+        <Theme />
         <button className="btn btn-ghost btn-circle">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,10 +1,27 @@
 import electron from "electron";
 import React from "react";
-import { BookRemove } from "./BookRemove";
+import { useStore } from "../store/store";
+import { BookOptions } from "./BookOptions";
 
 const shell = electron.shell;
 
 export const Book = ({ id, image, title, author, year, category, path }) => {
+  // Select book to show on preview section
+  const handleSelect = (e) => {
+    e.preventDefault();
+    useStore.setState({
+      selected: {
+        id,
+        image,
+        title,
+        author,
+        year,
+        category,
+        path,
+      },
+    });
+  };
+
   // Open the book with an external application
   const handleOpen = (e) => {
     e.preventDefault();
@@ -14,7 +31,8 @@ export const Book = ({ id, image, title, author, year, category, path }) => {
   return (
     <>
       <div
-        className="my-1 bg-base-200 border border-accent rounded-md flex flex-col justify-start gap-4 min-w-[12rem] h-[20.5rem] cursor-pointer tooltip hover:border-accent-focus"
+        className="my-1 bg-base-200 border border-accent rounded-sm flex flex-col justify-start gap-4 min-w-[12rem] h-[20.5rem] cursor-pointer tooltip hover:border-accent-focus"
+        onClick={handleSelect}
         onDoubleClick={handleOpen}
         data-tip={title}
       >
@@ -27,12 +45,11 @@ export const Book = ({ id, image, title, author, year, category, path }) => {
           <p className="text-2xl font-bold capitalize truncate">{title}</p>
           <p className="text-sm italic truncate">{author}</p>
           <p className="text-sm italic">{year}</p>
-          <p className="badge badge-secondary">{category}</p>
-          <label className="badge badge-error" htmlFor={`remove_book_${id}`}>
-            x
-          </label>
+          <div className="flex items-center justify-center content-center gap-4">
+            <p className="badge badge-secondary truncate">{category}</p>
+            <BookOptions id={id} title={title} />
+          </div>
         </div>
-        <BookRemove id={id} title={title} />
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import { BooksView } from "../components/BooksView";
 import { BookList } from "../components/BookList";
 import { useStore } from "../store/store";
 import { shallow } from "zustand/shallow";
+import { BookPreview } from "../components/BookPreview";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
@@ -29,11 +30,16 @@ function Home() {
       <Head>
         <title>Reishi</title>
       </Head>
-      <div className="my-2">
-        <BooksView books={books} />
-      </div>
-      <div className="mb-2 my-5">
-        <BookList books={books} />
+      <div className="flex flex-row justify-between gap-1">
+        <div className="container mx-5">
+          <div className="my-2">
+            <BooksView books={books} />
+          </div>
+          <div className="mb-2 my-5">
+            <BookList books={books} />
+          </div>
+        </div>
+        <BookPreview />
       </div>
     </>
   );

@@ -8,7 +8,7 @@ export const Stats = () => {
   return (
     <>
       <div className="flex justify-center content-center items-center align-middle">
-        <div className="stats">
+        <div className="stats shadow my-5">
           <div className="stat">
             <div className="stat-figure text-primary">
               <svg
