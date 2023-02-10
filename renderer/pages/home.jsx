@@ -21,8 +21,11 @@ function Home() {
   }
 
   useEffect(() => {
-    useStore.setState({ books: ipcRenderer.sendSync("get-books") });
-    useStore.setState({ recently: ipcRenderer.sendSync("get-recent") });
+    useStore.setState({
+      books: ipcRenderer.sendSync("get-books"),
+      recently: ipcRenderer.sendSync("get-recent"),
+      selected: ipcRenderer.sendSync("get-current"),
+    });
     return () => {
       // unregister it, when unmount the component
       // ipcRenderer.removeAllListeners("ping-pong");
@@ -34,7 +37,7 @@ function Home() {
       <Head>
         <title>Reishi</title>
       </Head>
-      <div className="flex flex-row justify-between gap-1">
+      <div className="flex flex-row justify-between">
         <div className="container mx-5">
           <div className="my-2">
             <BooksView books={recently} />

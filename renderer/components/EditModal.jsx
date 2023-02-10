@@ -1,39 +1,34 @@
 import electron from "electron";
 import React, { useState } from "react";
+import { shallow } from "zustand/shallow";
 import { useStore } from "../store/store";
 import { Book } from "./Book";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
-export const Modal = ({ trigger_id }) => {
-  const [book, setBook] = useState({
-    title: "",
-    author: "",
-    category: "Mathematics",
-    path: "",
-  });
-  const store = useStore(); // store from zustand
+export const EditModal = ({ trigger_id }) => {
+  const { book } = useStore((state) => ({ book: state.selected }), shallow);
 
   // manage the inputs changes
   const handleChange = (e) => {
     e.preventDefault();
-    setBook({ ...book, [e.target.name]: e.target.value });
+    book[e.target.name] = e.target.value;
   };
 
   // manage the pdf path
   const handlePath = (e) => {
     e.preventDefault();
-    const { name: _title, path } = e.target.files[0];
-    setBook({ ...book, path });
+    const { path } = e.target.files[0];
+    book.path = path;
   };
 
   // add the book to the local state and the app storage
   const addBook = (e) => {
     e.preventDefault();
     // add to electron storage
-    ipcRenderer.send("add-book", book);
+    const books = ipcRenderer.sendSync("edit-book", book);
     // add to app state
-    useStore.setState({ books: [...store.books, book] });
+    useStore.setState({ books });
   };
 
   return (
@@ -48,7 +43,7 @@ export const Modal = ({ trigger_id }) => {
             >
               ✕
             </label>
-            <h3 className="text-lg font-bold">Edit book metadata</h3>
+            <h3 className="text-lg font-bold"></h3>
             <p className="py-4">Edit the metadata of the book.</p>
             {/* title */}
             <div className="form-control w-full max-w-xs">
@@ -61,6 +56,7 @@ export const Modal = ({ trigger_id }) => {
                 name="title"
                 className="input input-bordered w-full max-w-xs"
                 onChange={handleChange}
+                defaultValue={book.title}
               />
             </div>
             {/* Author */}
@@ -74,6 +70,7 @@ export const Modal = ({ trigger_id }) => {
                 name="author"
                 className="input input-bordered w-full max-w-xs"
                 onChange={handleChange}
+                defaultValue={book.author}
               />
             </div>
             {/* year */}
@@ -87,6 +84,7 @@ export const Modal = ({ trigger_id }) => {
                 name="year"
                 className="input input-bordered w-full max-w-xs"
                 onChange={handleChange}
+                defaultValue={book.year}
               />
             </div>
             {/* category */}
@@ -97,12 +95,12 @@ export const Modal = ({ trigger_id }) => {
               <select
                 className="select select-bordered"
                 name="category"
+                defaultValue={book.category}
                 onChange={handleChange}
               >
-                <option disabled>Pick one</option>
-                <option defaultValue>Mathematics</option>
-                <option>Computer Science</option>
-                <option>Science</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Science">Science</option>
               </select>
             </div>
             {/* image */}
@@ -116,6 +114,7 @@ export const Modal = ({ trigger_id }) => {
                 name="image"
                 className="input input-bordered w-full max-w-xs"
                 onChange={handleChange}
+                defaultValue={book.image}
               />
             </div>
           </div>
@@ -136,20 +135,21 @@ export const Modal = ({ trigger_id }) => {
                 className="file-input file-input-bordered w-full max-w-xs"
                 name="path"
                 onChange={handlePath}
+                defaultValue={book.path}
               />
             </div>
             <label
               className="btn mt-2"
               htmlFor={trigger_id}
               // HACK: find a better way to do this
-              disabled={
-                book.title != "" && book.author != "" && book.path != ""
-                  ? false
-                  : true
-              }
+              // disabled={
+              //   book.title != "" && book.author != "" && book.path != ""
+              //     ? false
+              //     : true
+              // }
               onClick={addBook}
             >
-              Add Book
+              Edit Book
             </label>
           </div>
         </div>

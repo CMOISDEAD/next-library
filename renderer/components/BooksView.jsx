@@ -5,18 +5,14 @@ export const BooksView = ({ books }) => {
   return (
     <>
       <div className="text-md font-bold">
-        Recent books{" "}
+        Recent books
         <span className="text-secondary-content text-sm font-normal italic">
           ~ Continue with your last books
         </span>
       </div>
       <div className="flex flex-row justify-start gap-4 overflow-auto">
         {books.map((book, i) => {
-          return (
-            <div className="w-[14.6vw]" key={i}>
-              <Book {...book} />
-            </div>
-          );
+          return <Book {...book} key={i} />;
         })}
       </div>
     </>

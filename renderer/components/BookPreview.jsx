@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
 import { BookOptions } from "./BookOptions";
+import { shallow } from "zustand/shallow";
 
 export const BookPreview = () => {
   const [isVisible, setVisible] = useState(true);
-  const style = isVisible ? "w-4/12" : "w-[2vw]";
-  const { book } = useStore((state) => ({ book: state.selected }));
+  const { book } = useStore((state) => ({ book: state.selected }), shallow);
   const { id, image, title, author, year, category } = book;
+  const style = isVisible ? "w-4/12" : "w-[2vw]";
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -20,13 +21,15 @@ export const BookPreview = () => {
           <p className="link" onClick={handleChange}>
             {isVisible ? ">" : "<"}
           </p>
-          <BookOptions id={id} title={title} />
+          <BookOptions book={book} />
         </div>
         <div className={`my-2 ${isVisible ? "visible" : "invisible"}`}>
           <div className="flex flex-row content-center items-center justify-center">
             <img src={image} alt={title} className="h-[50vh]" />
           </div>
-          <p className="text-xl text-center font-bold pt-2">{title}</p>
+          <p className="text-md text-center font-bold pt-2 text-ellipsis">
+            {title}
+          </p>
           <p className="text-sm pt-3 h-[12vh] overflow-hidden">
             Elit repellendus modi eos rem quam ipsum, distinctio at laboriosam?
             Ab sint praesentium sit porro expedita Voluptate eum excepturi id
@@ -45,7 +48,7 @@ export const BookPreview = () => {
             </p>
             <p>
               <span className="font-bold">Year: </span>
-              {year}
+              {year} - {id}
             </p>
           </div>
         </div>

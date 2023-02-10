@@ -10,8 +10,8 @@ const Layout = ({ children }) => {
       <Header />
       <div className="min-h-[90.8vh]">
         <div className="pt-16">{children}</div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };

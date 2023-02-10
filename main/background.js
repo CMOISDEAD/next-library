@@ -41,15 +41,52 @@ ipcMain.on("add-book", (event, arg) => {
   event.returnValue = "200";
 });
 
+// Get all books in the storage
+ipcMain.on("get-books", (event, _) => {
+  const data = store.get("books");
+  event.returnValue = data;
+});
+
+// Edit a book by his id
+ipcMain.on("edit-book", (event, arg) => {
+  const books = store.get("books");
+  const newList = books.map((book) => {
+    if (book.id == arg.id) return arg;
+    return book;
+  });
+  store.set("books", newList);
+  store.set("current", arg);
+  event.returnValue = newList;
+});
+
+// Remove a specific book from storage with its id
+ipcMain.on("remove-book", (event, arg) => {
+  const books = store.get("books").filter((book) => book.id != arg);
+  store.set("books", books);
+  event.returnValue = books;
+});
+
+// Add a book to recent list
 ipcMain.on("add-recent", (event, arg) => {
   const recent = arg;
   store.set("recent", recent);
   event.returnValue = "200";
 });
 
-ipcMain.on("get-recent", (event, arg) => {
+// Get all recent books from storage
+ipcMain.on("get-recent", (event, _) => {
   const data = store.get("recent");
   event.returnValue = data;
+});
+
+// Add current selected book to storage
+ipcMain.on("add-current", (_, arg) => {
+  store.set("current", arg);
+});
+
+// Get current selected book
+ipcMain.on("get-current", (event, _) => {
+  event.returnValue = store.get("current");
 });
 
 // Get the pdf file from a book
@@ -58,17 +95,4 @@ ipcMain.on("get-pdf", async (event) => {
     properties: ["openFile", "multiSelections"],
   });
   event.returnValue = filePaths[0];
-});
-
-// Get all books in the storage
-ipcMain.on("get-books", (event, _arg) => {
-  const data = store.get("books");
-  event.returnValue = data;
-});
-
-// Remove a specific book from storage with its id
-ipcMain.on("remove-book", (event, arg) => {
-  const books = store.get("books").filter((book) => book.id != arg);
-  store.set("books", books);
-  event.returnValue = books;
 });
