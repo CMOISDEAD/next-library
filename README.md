@@ -4,8 +4,8 @@
 
 ### Todos
 
-- [ ] Implement UUID.
+- [x] Implement UUID.
 - [ ] Account features.
-- [ ] More modals component are neeeded?
+- [x] Sections features.
 - [x] Edit, Delete features.
 - [x] Change colorscheme feature.
