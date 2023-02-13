@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import { useStore } from "../store/store";
 import { BookOptions } from "./BookOptions";
 import { shallow } from "zustand/shallow";
+import {
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight,
+  AiOutlineUser,
+  AiOutlineCalendar,
+  AiOutlineGold,
+} from "react-icons/ai";
 
 export const BookPreview = () => {
   const [isVisible, setVisible] = useState(true);
   const { book } = useStore((state) => ({ book: state.selected }), shallow);
-  const { id, image, title, author, year, category } = book;
+  const { image, title, author, year, category } = book;
   const style = isVisible ? "w-4/12" : "w-[2vw]";
 
   const handleChange = (e) => {
@@ -15,15 +22,17 @@ export const BookPreview = () => {
   };
 
   return (
-    <div className={`bg-base-200 relative ${style} transition-all`}>
+    <div className={`bg-base-200 ${style} transition-all shadow`}>
       <div className="fixed p-2 bg-base-200">
         <div className="flex gap-4 justify-between">
           <p className="link" onClick={handleChange}>
-            {isVisible ? ">" : "<"}
+            {isVisible ? <AiOutlineArrowRight /> : <AiOutlineArrowLeft />}
           </p>
           <BookOptions book={book} />
         </div>
-        <div className={`my-2 ${isVisible ? "visible" : "invisible"}`}>
+        <div
+          className={`my-2 ${isVisible ? "visible" : "invisible"} min-h-screen`}
+        >
           <div className="flex flex-row content-center items-center justify-center">
             <img src={image} alt={title} className="h-[50vh]" />
           </div>
@@ -38,18 +47,23 @@ export const BookPreview = () => {
           </p>
           <div className="divider"></div>
           <div className="text-sm">
-            <p>
-              <span className="font-bold">Author: </span>
-              <span className="link">{author}</span>
-            </p>
-            <p>
-              <span className="font-bold">Category: </span>
+            <div className="inline-flex content-center items-center gap-1">
+              <AiOutlineUser />
+              <p className="font-bold">Author: </p>
+              <p className="link">{author}</p>
+            </div>
+            <br />
+            <div className="inline-flex content-center items-center gap-1">
+              <AiOutlineGold />
+              <p className="font-bold">Category: </p>
               {category}
-            </p>
-            <p>
-              <span className="font-bold">Year: </span>
-              {year} - {id}
-            </p>
+            </div>
+            <br />
+            <div className="inline-flex content-center items-center gap-1">
+              <AiOutlineCalendar />
+              <p className="font-bold">Year: </p>
+              {year}
+            </div>
           </div>
         </div>
       </div>

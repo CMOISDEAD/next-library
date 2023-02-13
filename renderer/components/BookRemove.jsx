@@ -9,8 +9,9 @@ export const BookRemove = ({ id, title }) => {
 
   const handleRemove = (e) => {
     e.preventDefault();
-    const books = ipcRenderer.sendSync("remove-book", id);
-    useStore.setState({ books });
+    const { books, recent } = ipcRenderer.sendSync("remove-book", id);
+    ipcRenderer.send("add-current", {});
+    useStore.setState({ books, selected: {}, recently: recent });
   };
 
   return (

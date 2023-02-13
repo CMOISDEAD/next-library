@@ -1,6 +1,7 @@
 import React from "react";
 import { BookRemove } from "./BookRemove";
 import { EditModal } from "./EditModal";
+import { RxDotsHorizontal } from "react-icons/rx";
 
 export const BookOptions = ({ book }) => {
   const { id, title } = book;
@@ -9,9 +10,9 @@ export const BookOptions = ({ book }) => {
     <div className="dropdown dropdown-bottom dropdown-end">
       <label
         tabIndex={0}
-        className="badge badge-info m-1 cursor-pointer hover:bg-info-content hover:text-primary-focus"
+        className="badge badge-ghost m-1 cursor-pointer hover:bg-info-content hover:text-primary-focus"
       >
-        ...
+        <RxDotsHorizontal />
       </label>
       <ul
         tabIndex={0}

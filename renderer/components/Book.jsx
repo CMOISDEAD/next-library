@@ -48,7 +48,7 @@ export const Book = ({ id, image, title, author, year, category, path }) => {
   return (
     <>
       <div
-        className="my-1 bg-base-200 border border-accent rounded-sm flex flex-col justify-start gap-4 w-auto max-w-[15rem] max-h-[21.5rem] cursor-pointer tooltip hover:border-accent-focus"
+        className="my-1 bg-base-200 border border-accent rounded-sm flex flex-col justify-start gap-4 w-auto max-w-[15rem] max-h-[21.5rem] cursor-pointer tooltip shadow-md hover:shadow-xl transition-all"
         onClick={handleSelect}
         onDoubleClick={handleOpen}
         data-tip={title}
@@ -56,7 +56,7 @@ export const Book = ({ id, image, title, author, year, category, path }) => {
         <img
           src={image}
           alt={`${title} - ${author} book image`}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
         />
       </div>
     </>

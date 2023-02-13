@@ -1,5 +1,8 @@
+import electron from "electron";
 import React from "react";
 import { useStore } from "../store/store";
+
+const ipcRenderer = electron.ipcRenderer || false;
 
 export const Theme = () => {
   const { current } = useStore((state) => ({ current: state.theme }));
@@ -24,7 +27,13 @@ export const Theme = () => {
           "winter",
           "synthwave",
         ].map((theme, i) => (
-          <li key={i} onClick={() => useStore.setState({ theme })}>
+          <li
+            key={i}
+            onClick={() => {
+              useStore.setState({ theme });
+              ipcRenderer.send("set-theme", theme);
+            }}
+          >
             <a>{theme}</a>
           </li>
         ))}

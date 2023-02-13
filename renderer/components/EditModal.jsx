@@ -1,5 +1,5 @@
 import electron from "electron";
-import React, { useState } from "react";
+import React from "react";
 import { shallow } from "zustand/shallow";
 import { useStore } from "../store/store";
 import { Book } from "./Book";
@@ -7,7 +7,10 @@ import { Book } from "./Book";
 const ipcRenderer = electron.ipcRenderer || false;
 
 export const EditModal = ({ trigger_id }) => {
-  const { book } = useStore((state) => ({ book: state.selected }), shallow);
+  const { book, categories } = useStore(
+    (state) => ({ book: state.selected, categories: state.categories }),
+    shallow
+  );
 
   // manage the inputs changes
   const handleChange = (e) => {
@@ -23,7 +26,7 @@ export const EditModal = ({ trigger_id }) => {
   };
 
   // add the book to the local state and the app storage
-  const addBook = (e) => {
+  const editBook = (e) => {
     e.preventDefault();
     // add to electron storage
     const books = ipcRenderer.sendSync("edit-book", book);
@@ -95,12 +98,14 @@ export const EditModal = ({ trigger_id }) => {
               <select
                 className="select select-bordered"
                 name="category"
-                defaultValue={book.category}
+                defaultValue=""
                 onChange={handleChange}
               >
-                <option value="Mathematics">Mathematics</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Science">Science</option>
+                {categories.map((category, i) => (
+                  <option value={category} key={i}>
+                    {category}
+                  </option>
+                ))}
               </select>
             </div>
             {/* image */}
@@ -147,7 +152,7 @@ export const EditModal = ({ trigger_id }) => {
               //     ? false
               //     : true
               // }
-              onClick={addBook}
+              onClick={editBook}
             >
               Edit Book
             </label>

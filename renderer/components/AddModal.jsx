@@ -1,7 +1,7 @@
 import electron from "electron";
 import React, { useState } from "react";
-import { useStore } from "../store/store";
 import { Book } from "./Book";
+import { useStore } from "../store/store";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
@@ -12,7 +12,10 @@ export const AddModal = ({ trigger_id }) => {
     category: "Mathematics",
     path: "",
   });
-  const store = useStore(); // store from zustand
+
+  const { categories } = useStore((state) => ({
+    categories: state.categories,
+  }));
 
   // manage the inputs changes
   const handleChange = (e) => {
@@ -31,9 +34,9 @@ export const AddModal = ({ trigger_id }) => {
   const addBook = (e) => {
     e.preventDefault();
     // add to electron storage
-    ipcRenderer.send("add-book", book);
+    const books = ipcRenderer.sendSync("add-book", book);
     // add to app state
-    useStore.setState({ books: [...store.books, book] });
+    useStore.setState({ books: books });
   };
 
   return (
@@ -99,10 +102,11 @@ export const AddModal = ({ trigger_id }) => {
                 name="category"
                 onChange={handleChange}
               >
-                <option disabled>Pick one</option>
-                <option defaultValue>Mathematics</option>
-                <option>Computer Science</option>
-                <option>Science</option>
+                {categories.map((category, i) => (
+                  <option value={category} key={i}>
+                    {category}
+                  </option>
+                ))}
               </select>
             </div>
             {/* image */}

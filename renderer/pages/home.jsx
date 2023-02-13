@@ -25,6 +25,8 @@ function Home() {
       books: ipcRenderer.sendSync("get-books"),
       recently: ipcRenderer.sendSync("get-recent"),
       selected: ipcRenderer.sendSync("get-current"),
+      theme: ipcRenderer.sendSync("get-theme"),
+      categories: ipcRenderer.sendSync("get-categories"),
     });
     return () => {
       // unregister it, when unmount the component
