@@ -33,9 +33,9 @@ export const Header = () => {
             <li>
               <a>Books</a>
             </li>
-            <li>
-              <Link href="/account">Account</Link>
-            </li>
+            {/* <li> */}
+            {/*   <Link href="/account">Account</Link> */}
+            {/* </li> */}
             <li>
               <a>Configuration</a>
             </li>

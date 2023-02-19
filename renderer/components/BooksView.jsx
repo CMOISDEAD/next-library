@@ -1,8 +1,17 @@
 import React from "react";
 import { Book } from "./Book";
 import { BsBook } from "react-icons/bs";
+import { useStore } from "../store/store";
+import { shallow } from "zustand/shallow";
 
-export const BooksView = ({ books }) => {
+export const BooksView = () => {
+  const { books } = useStore(
+    (state) => ({
+      books: state.recently,
+    }),
+    shallow
+  );
+
   return (
     <>
       <div className="text-md font-bold inline-flex content-center items-center gap-2">

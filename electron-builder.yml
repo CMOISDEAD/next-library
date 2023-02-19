@@ -1,6 +1,6 @@
-appId: com.example.nextron
-productName: My Nextron App
-copyright: Copyright © 2018 Yoshihide Shiono
+appId: com.doom.library
+productName: doom library
+copyright: Copyright © 2023 Camilo Davila
 directories:
   output: dist
   buildResources: resources

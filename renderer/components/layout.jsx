@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <div data-theme={theme}>
       <Header />
-      <div className="min-h-[90.8vh]">
+      <div className="bg-gradient-to-tl from-base-100 to-base-300">
         <div className="pt-16">{children}</div>
         <Footer />
       </div>

@@ -4,17 +4,11 @@ import Head from "next/head";
 import { BooksView } from "../components/BooksView";
 import { BookList } from "../components/BookList";
 import { useStore } from "../store/store";
-import { shallow } from "zustand/shallow";
 import { BookPreview } from "../components/BookPreview";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
 function Home() {
-  const { books, recently } = useStore(
-    (state) => ({ books: state.books, recently: state.recently }),
-    shallow
-  );
-
   // If we use ipcRenderer in this scope, we must check the instance exists
   if (ipcRenderer) {
     // In this scope, the webpack process is the client
@@ -42,10 +36,10 @@ function Home() {
       <div className="flex flex-row justify-between">
         <div className="container mx-5">
           <div className="my-2">
-            <BooksView books={recently} />
+            <BooksView />
           </div>
           <div className="mb-2 my-5">
-            <BookList books={books} />
+            <BookList />
           </div>
         </div>
         <BookPreview />
