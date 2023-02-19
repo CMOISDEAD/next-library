@@ -15,12 +15,17 @@ function Home() {
   }
 
   useEffect(() => {
+    const books = ipcRenderer.sendSync("get-books") || [];
+    const recently = ipcRenderer.sendSync("get-recent") || [];
+    const selected = ipcRenderer.sendSync("get-current") || [];
+    const theme = ipcRenderer.sendSync("get-theme") || [];
+    const categories = ipcRenderer.sendSync("get-categories") || [];
     useStore.setState({
-      books: ipcRenderer.sendSync("get-books"),
-      recently: ipcRenderer.sendSync("get-recent"),
-      selected: ipcRenderer.sendSync("get-current"),
-      theme: ipcRenderer.sendSync("get-theme"),
-      categories: ipcRenderer.sendSync("get-categories"),
+      books,
+      recently,
+      selected,
+      theme,
+      categories,
     });
     return () => {
       // unregister it, when unmount the component

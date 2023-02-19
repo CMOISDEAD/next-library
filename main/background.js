@@ -37,20 +37,20 @@ app.on("window-all-closed", () => {
 
 // Add a book to the storage
 ipcMain.on("add-book", (event, arg) => {
-  const books = store.get("books") || [];
+  const books = store.get("books", []);
   store.set("books", [...books, { id: uuidv4(), ...arg }]);
   event.returnValue = [...books, { id: uuidv4(), ...arg }];
 });
 
 // Get all books in the storage
 ipcMain.on("get-books", (event, _) => {
-  const data = store.get("books");
+  const data = store.get("books", []);
   event.returnValue = data;
 });
 
 // Edit a book by his id
 ipcMain.on("edit-book", (event, arg) => {
-  const books = store.get("books");
+  const books = store.get("books", []);
   const newList = books.map((book) => {
     if (book.id == arg.id) return arg;
     return book;
@@ -62,9 +62,9 @@ ipcMain.on("edit-book", (event, arg) => {
 
 // Remove a specific book from storage with its id
 ipcMain.on("remove-book", (event, arg) => {
-  const books = store.get("books").filter((book) => book.id != arg);
+  const books = store.get("books", []).filter((book) => book.id != arg);
   store.set("books", books);
-  const recent = store.get("recent");
+  const recent = store.get("recent", []);
   const newRecent = recent.filter((book) => book.id != arg);
   store.set("recent", newRecent);
   event.returnValue = { books, recent: newRecent };
@@ -79,7 +79,7 @@ ipcMain.on("add-recent", (event, arg) => {
 
 // Get all recent books from storage
 ipcMain.on("get-recent", (event, _) => {
-  const data = store.get("recent");
+  const data = store.get("recent", []);
   event.returnValue = data;
 });
 
@@ -90,7 +90,7 @@ ipcMain.on("add-current", (_, arg) => {
 
 // Get current selected book
 ipcMain.on("get-current", (event, _) => {
-  event.returnValue = store.get("current");
+  event.returnValue = store.get("current", {});
 });
 
 // Get the pdf file from a book
@@ -103,14 +103,14 @@ ipcMain.on("get-pdf", async (event) => {
 
 // Add categories
 ipcMain.on("add-categories", (event, arg) => {
-  const categories = store.get("categories");
+  const categories = store.get("categories", []);
   store.set("categories", [...categories, arg]);
   event.returnValue = [...categories, arg];
 });
 
 // Get categories
 ipcMain.on("get-categories", (event, _) => {
-  event.returnValue = store.get("categories");
+  event.returnValue = store.get("categories", []);
 });
 
 // Remove categorie
@@ -128,5 +128,10 @@ ipcMain.on("set-theme", (_, arg) => {
 
 // Get theme
 ipcMain.on("get-theme", (event, _) => {
-  event.returnValue = store.get("theme");
+  event.returnValue = store.get("theme", "dark");
+});
+
+// clear data
+ipcMain.on("clear-data", () => {
+  store.clear();
 });
