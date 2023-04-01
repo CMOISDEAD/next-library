@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "my-nextron-app",
-  "description": "My application description",
+  "name": "Doom-Library",
+  "description": "Doom library",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "CMOISDEAD <camiloesteban661@gmail.com>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
@@ -11,6 +11,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.21.0",
     "@types/node": "^18.13.0",
     "@types/react": "^18.0.27",
     "autoprefixer": "^10.4.13",
