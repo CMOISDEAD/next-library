@@ -62,6 +62,20 @@ export const EditModal = ({ trigger_id }) => {
                 defaultValue={book.title}
               />
             </div>
+            {/* description */}
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Book Description</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Description"
+                name="description"
+                className="input input-bordered w-full max-w-xs"
+                onChange={handleChange}
+                defaultValue={book.description}
+              />
+            </div>
             {/* Author */}
             <div className="form-control w-full max-w-xs">
               <label className="label">

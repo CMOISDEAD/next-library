@@ -24,7 +24,7 @@ export const BookList = () => {
         <div className="text-md font-bold inline-flex content-center items-center gap-2">
           <BsBookshelf />
           All books
-          <span className="text-secondary-content text-sm font-normal italic">
+          <span className="text-secondary text-sm font-normal italic">
             ~ Look all your magic books
           </span>
         </div>

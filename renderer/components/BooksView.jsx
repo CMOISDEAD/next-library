@@ -17,7 +17,7 @@ export const BooksView = () => {
       <div className="text-md font-bold inline-flex content-center items-center gap-2">
         <BsBook />
         Recent books
-        <span className="text-secondary-content text-sm font-normal italic">
+        <span className="text-secondary text-sm font-normal italic">
           ~ Continue with your last books
         </span>
       </div>

@@ -25,5 +25,36 @@ module.exports = {
       },
     },
   },
+  daisyui: {
+    themes: [
+      "lofi",
+      "black",
+      "dracula",
+      {
+        gruvbox: {
+          primary: "#b16286",
+          secondary: "#d65d0e",
+          accent: "#d5c4a1",
+          neutral: "#fbf1c7",
+          "base-100": "#282828",
+          info: "#458588",
+          success: "#689d6a",
+          warning: "#fabd2f",
+          error: "#cc241d",
+        },
+        "gruvbox-light": {
+          primary: "#b16286",
+          secondary: "#d65d0e",
+          accent: "#1d2021",
+          neutral: "#282828",
+          "base-100": "#f9f5d7",
+          info: "#458588",
+          success: "#689d6a",
+          warning: "#fabd2f",
+          error: "#cc241d",
+        },
+      },
+    ],
+  },
   plugins: [require("daisyui")],
 };

@@ -8,6 +8,7 @@ const ipcRenderer = electron.ipcRenderer || false;
 export const AddModal = ({ trigger_id }) => {
   const [book, setBook] = useState({
     title: "",
+    description: "",
     author: "",
     category: "Mathematics",
     path: "",
@@ -35,6 +36,8 @@ export const AddModal = ({ trigger_id }) => {
     e.preventDefault();
     // add to electron storage
     const books = ipcRenderer.sendSync("add-book", book);
+    console.log(book);
+    console.log(books);
     // add to app state
     useStore.setState({ books: books });
   };
@@ -62,6 +65,19 @@ export const AddModal = ({ trigger_id }) => {
                 type="text"
                 placeholder="Title"
                 name="title"
+                className="input input-bordered w-full max-w-xs"
+                onChange={handleChange}
+              />
+            </div>
+            {/* description */}
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">description</span>
+              </label>
+              <textarea
+                type="text"
+                placeholder="Description"
+                name="description"
                 className="input input-bordered w-full max-w-xs"
                 onChange={handleChange}
               />

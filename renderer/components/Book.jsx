@@ -5,7 +5,16 @@ import { useStore } from "../store/store";
 const shell = electron.shell;
 const ipcRenderer = electron.ipcRenderer || false;
 
-export const Book = ({ id, image, title, author, year, category, path }) => {
+export const Book = ({
+  id,
+  image,
+  title,
+  description,
+  author,
+  year,
+  category,
+  path,
+}) => {
   const { recently } = useStore((state) => ({ recently: state.recently }));
 
   // Select book to show on preview section
@@ -15,6 +24,7 @@ export const Book = ({ id, image, title, author, year, category, path }) => {
       id,
       image,
       title,
+      description,
       author,
       year,
       category,
@@ -31,7 +41,16 @@ export const Book = ({ id, image, title, author, year, category, path }) => {
     e.preventDefault();
     shell.openExternal(`file://${path}`);
     // Add book to recently list, HACK: this function need a refactor!!
-    const book = { id, image, title, author, year, category, path };
+    const book = {
+      id,
+      image,
+      title,
+      description,
+      author,
+      year,
+      category,
+      path,
+    };
     const new_recent = [...recently];
     const exist = new_recent.find((element) => element.id == id);
     if (exist) {

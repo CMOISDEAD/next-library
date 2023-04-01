@@ -13,7 +13,7 @@ import {
 export const BookPreview = () => {
   const [isVisible, setVisible] = useState(true);
   const { book } = useStore((state) => ({ book: state.selected }), shallow);
-  const { image, title, author, year, category } = book;
+  const { image, title, description, author, year, category } = book;
   const style = isVisible ? "w-4/12" : "w-[2vw]";
 
   const handleChange = (e) => {
@@ -22,8 +22,8 @@ export const BookPreview = () => {
   };
 
   return (
-    <div className={`bg-base-200 ${style} transition-all shadow`}>
-      <div className="fixed p-2 bg-base-200">
+    <div className={`${style} transition-all shadow`}>
+      <div className="fixed p-2 bg-base-200 ">
         <div className="flex gap-4 justify-between">
           <p className="link" onClick={handleChange}>
             {isVisible ? <AiOutlineArrowRight /> : <AiOutlineArrowLeft />}
@@ -36,14 +36,11 @@ export const BookPreview = () => {
           <div className="flex flex-row content-center items-center justify-center">
             <img src={image} alt={title} className="h-[50vh]" />
           </div>
-          <p className="text-md text-center font-bold pt-2 text-ellipsis">
+          <p className="text-md text-center font-bold py-1 truncate w-72">
             {title}
           </p>
-          <p className="text-sm pt-3 h-[12vh] overflow-hidden">
-            Elit repellendus modi eos rem quam ipsum, distinctio at laboriosam?
-            Ab sint praesentium sit porro expedita Voluptate eum excepturi id
-            iure architecto Eligendi dolorem error quaerat obcaecati esse
-            Sapiente quos
+          <p className="text-sm py-1 h-[15vh] overflow-y-scroll">
+            {description}
           </p>
           <div className="divider"></div>
           <div className="text-sm">
