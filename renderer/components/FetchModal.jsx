@@ -50,7 +50,6 @@ export const FetchModal = ({ trigger, title, callback }) => {
       )
       .then((res) => {
         const { items } = res.data;
-        console.log(items);
         setBooks(items);
       })
       .catch((err) => console.error(err));

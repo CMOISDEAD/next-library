@@ -157,17 +157,7 @@ export const EditModal = ({ trigger_id }) => {
                 defaultValue={book.path}
               />
             </div>
-            <label
-              className="btn mt-2"
-              htmlFor={trigger_id}
-              // HACK: find a better way to do this
-              // disabled={
-              //   book.title != "" && book.author != "" && book.path != ""
-              //     ? false
-              //     : true
-              // }
-              onClick={editBook}
-            >
+            <label className="btn mt-2" htmlFor={trigger_id} onClick={editBook}>
               Edit Book
             </label>
           </div>

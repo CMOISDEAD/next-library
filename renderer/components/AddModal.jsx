@@ -24,7 +24,7 @@ export const AddModal = ({ trigger_id }) => {
     setBook({ ...book, [e.target.name]: e.target.value });
   };
 
-  // manage the pdf path
+  // manage path of the pdf
   const handlePath = (e) => {
     e.preventDefault();
     const { name: _title, path } = e.target.files[0];
@@ -36,8 +36,6 @@ export const AddModal = ({ trigger_id }) => {
     e.preventDefault();
     // add to electron storage
     const books = ipcRenderer.sendSync("add-book", book);
-    console.log(book);
-    console.log(books);
     // add to app state
     useStore.setState({ books: books });
   };

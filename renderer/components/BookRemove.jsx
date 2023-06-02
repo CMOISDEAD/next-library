@@ -29,7 +29,7 @@ export const BookRemove = ({ id, title }) => {
             Are you sure to delete {title} ?
           </h3>
           <p className="py-4 text-warning">
-            Carefull if you delete this book, you can get it back !
+            Be carefull if you delete this book, you can get it back!
           </p>
           <label
             className="btn btn-warning mt-2"
