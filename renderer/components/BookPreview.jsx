@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useStore } from "../store/store";
 import { BookOptions } from "./BookOptions";
 import { shallow } from "zustand/shallow";

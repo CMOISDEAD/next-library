@@ -1,14 +1,12 @@
-import React from "react";
-
 export const Notify = () => {
   return (
-    <div className="fixed bottom-2 right-2 w-[30vw] alert alert-info shadow-lg">
+    <div className="fixed right-2 bottom-2 shadow-lg w-[30vw] alert alert-info">
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          className="stroke-current flex-shrink-0 w-6 h-6"
+          className="flex-shrink-0 w-6 h-6 stroke-current"
         >
           <path
             strokeLinecap="round"

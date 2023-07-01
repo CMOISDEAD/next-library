@@ -1,5 +1,5 @@
 import electron from "electron";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Book } from "./Book";
 import { useStore } from "../store/store";
 

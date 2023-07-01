@@ -1,4 +1,4 @@
-// template data
+// template data, should remove this ?
 export const books = [
   {
     id: 0,

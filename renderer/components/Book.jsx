@@ -1,5 +1,4 @@
 import electron from "electron";
-import React from "react";
 import { useStore } from "../store/store";
 
 const shell = electron.shell;
@@ -67,7 +66,7 @@ export const Book = ({
   return (
     <>
       <div
-        className="my-1 bg-base-200 border border-accent rounded-sm flex flex-col justify-start gap-4 w-[15rem] h-[21.5rem] cursor-pointer tooltip shadow-md hover:shadow-xl transition-all"
+        className="flex flex-col gap-4 justify-start my-1 rounded-sm border shadow-md transition-all cursor-pointer hover:shadow-xl bg-base-200 border-accent w-[15rem] h-[21.5rem] tooltip"
         onClick={handleSelect}
         onDoubleClick={handleOpen}
         data-tip={title}
@@ -75,7 +74,7 @@ export const Book = ({
         <img
           src={image}
           alt={`${title} - ${author} book image`}
-          className="w-full h-full object-fill"
+          className="object-fill w-full h-full"
         />
       </div>
     </>

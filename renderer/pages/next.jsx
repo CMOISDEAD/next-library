@@ -1,6 +1,5 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from "next/head";
+import Link from "next/link";
 
 function Next() {
   return (
@@ -18,6 +17,6 @@ function Next() {
       </div>
     </React.Fragment>
   );
-};
+}
 
 export default Next;

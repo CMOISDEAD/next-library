@@ -1,4 +1,3 @@
-import React from "react";
 import { AddModal } from "./AddModal";
 import { AddCategory } from "./AddCategory";
 import {

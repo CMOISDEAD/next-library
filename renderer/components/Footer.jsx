@@ -1,5 +1,4 @@
 import { shell } from "electron";
-import React from "react";
 import { AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai";
 
 export const Footer = () => {

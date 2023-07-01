@@ -1,5 +1,4 @@
 // NOTE: this file should be named recentBooks.jsx
-import React from "react";
 import { Book } from "./Book";
 import { BsBook } from "react-icons/bs";
 import { useStore } from "../store/store";

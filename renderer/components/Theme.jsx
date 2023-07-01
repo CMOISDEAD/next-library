@@ -1,5 +1,4 @@
 import electron from "electron";
-import React from "react";
 import { useStore } from "../store/store";
 
 const ipcRenderer = electron.ipcRenderer || false;

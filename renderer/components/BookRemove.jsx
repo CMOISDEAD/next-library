@@ -1,5 +1,4 @@
 import electron from "electron";
-import React from "react";
 import { useStore } from "../store/store";
 
 const ipcRenderer = electron.ipcRenderer || false;
@@ -18,10 +17,10 @@ export const BookRemove = ({ id, title }) => {
     <>
       <input type="checkbox" id={trigger} className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box relative">
+        <div className="relative modal-box">
           <label
             htmlFor={trigger}
-            className="btn btn-sm btn-circle absolute right-2 top-2"
+            className="absolute top-2 right-2 btn btn-sm btn-circle"
           >
             ✕
           </label>
@@ -32,7 +31,7 @@ export const BookRemove = ({ id, title }) => {
             Be carefull if you delete this book, you can get it back!
           </p>
           <label
-            className="btn btn-warning mt-2"
+            className="mt-2 btn btn-warning"
             htmlFor={trigger}
             onClick={handleRemove}
           >

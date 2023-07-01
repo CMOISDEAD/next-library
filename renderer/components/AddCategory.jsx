@@ -1,5 +1,5 @@
 import electron from "electron";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useStore } from "../store/store";
 
 const ipcRenderer = electron.ipcRenderer || false;
@@ -25,10 +25,10 @@ export const AddCategory = ({ trigger_id }) => {
     <>
       <input type="checkbox" id={trigger_id} className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box relative">
+        <div className="relative modal-box">
           <label
             htmlFor={trigger_id}
-            className="btn btn-sm btn-circle absolute right-2 top-2"
+            className="absolute top-2 right-2 btn btn-sm btn-circle"
           >
             ✕
           </label>
@@ -41,7 +41,7 @@ export const AddCategory = ({ trigger_id }) => {
               type="text"
               placeholder="name"
               name="name"
-              className="input input-bordered w-full max-w-xs"
+              className="w-full max-w-xs input input-bordered"
               onChange={handleChange}
             />
           </p>

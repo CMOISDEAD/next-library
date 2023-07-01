@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 
 // Preview book fetched component
 const Item = ({
@@ -24,12 +24,12 @@ const Item = ({
   };
 
   return (
-    <div className="card card-side bg-base-200 shadow-md max-h-44 my-2">
+    <div className="my-2 max-h-44 shadow-md card card-side bg-base-200">
       <img src={image} alt="Movie" />
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <p className="text-ellipsis overflow-clip">{description}</p>
-        <div className="card-actions justify-end">
+        <div className="justify-end card-actions">
           <button className="btn btn-primary" onClick={handleSelect}>
             Select
           </button>
@@ -62,13 +62,13 @@ export const FetchModal = ({ trigger, title, callback }) => {
       </label>
       <input type="checkbox" id={trigger} className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-full max-w-full">
+        <div className="w-full max-w-full modal-box">
           <div className="flex justify-between mt-11">
             <h3 className="text-2xl text-center text-primary-content">
               Google Books
             </h3>
             <label
-              className="btn btn-md btn-square right-2 top-2"
+              className="top-2 right-2 btn btn-md btn-square"
               onClick={handleFetch}
             >
               Fetch
@@ -77,13 +77,13 @@ export const FetchModal = ({ trigger, title, callback }) => {
           <div className="h-auto">
             {books.length > 0
               ? books.map((book, i) => {
-                return (
-                  <Item {...book.volumeInfo} key={i} callback={callback} />
-                );
-              })
+                  return (
+                    <Item {...book.volumeInfo} key={i} callback={callback} />
+                  );
+                })
               : "no books"}
           </div>
-          <div className="modal-action mb-11">
+          <div className="mb-11 modal-action">
             <label htmlFor={trigger} className="btn">
               Cancel
             </label>

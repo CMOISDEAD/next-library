@@ -1,5 +1,4 @@
 import electron from "electron";
-import React from "react";
 import { Book } from "./Book";
 import { BsBookshelf } from "react-icons/bs";
 import { Toolbar } from "./Toolbar";
