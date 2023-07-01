@@ -40,7 +40,7 @@ export const Header = () => {
       </div>
       <div className="navbar-center">
         <Link href="/home">
-          <p className="text-xl normal-case btn btn-ghost">Digital Reader X</p>
+          <p className="text-xl normal-case btn btn-ghost">Next Library</p>
         </Link>
       </div>
       <div className="navbar-end">
