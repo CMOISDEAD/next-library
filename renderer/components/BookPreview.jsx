@@ -27,8 +27,8 @@ export const BookPreview = () => {
           <p className="link" onClick={handleChange}>
             {isVisible ? <AiOutlineArrowRight /> : <AiOutlineArrowLeft />}
           </p>
-
-          {title && <BookOptions book={book} />}
+          {/* NOTE: Hide this options when no books is on preview. */}
+          <BookOptions book={book} />
         </div>
         <div
           className={`my-2 ${isVisible ? "visible" : "invisible"} min-h-screen`}

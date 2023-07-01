@@ -13,7 +13,7 @@ export const AddModal = ({ trigger_id }) => {
     title: "",
     description: "",
     author: "",
-    category: categories[0] || "",
+    category: "",
     path: "",
   });
 
@@ -115,6 +115,7 @@ export const AddModal = ({ trigger_id }) => {
                 name="category"
                 onChange={handleChange}
               >
+                <option value="">select one</option>
                 {categories.map((category, i) => (
                   <option value={category} key={i}>
                     {category}
