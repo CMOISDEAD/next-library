@@ -33,7 +33,7 @@ function Home() {
       <Head>
         <title>Next Library</title>
       </Head>
-      <div className="flex flex-row justify-between min-h-[81.1vh]">
+      <div className="flex flex-row justify-between">
         <div className="container mx-5">
           <div className="my-2">
             <BooksView />

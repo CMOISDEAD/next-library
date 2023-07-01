@@ -21,7 +21,10 @@ export const BookPreview = () => {
   };
 
   return (
-    <div className={`${isVisible ? "w-[25rem]" : "w-7"} transition-all shadow`}>
+    <div
+      className={`${isVisible ? "w-[25rem]" : "w-7"
+        } transition-all shadow z-10`}
+    >
       <div className="fixed p-2 bg-base-200">
         <div className="flex gap-4 justify-between">
           <p className="link" onClick={handleChange}>
@@ -41,7 +44,7 @@ export const BookPreview = () => {
               <p className="py-1 font-bold text-center text-md truncate">
                 {title}
               </p>
-              <p className="overflow-y-scroll py-1 text-sm h-[15vh]">
+              <p className="overflow-y-scroll py-1 text-sm h-[13vh]">
                 {description}
               </p>
               <div className="divider"></div>
