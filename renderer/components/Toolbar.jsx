@@ -13,7 +13,7 @@ const ipcRenderer = electron.ipcRenderer || false;
 export const Toolbar = () => {
   const handleClear = (e) => {
     e.preventDefault();
-    ipcRenderer.sendSync("clear-data"); // freeze app
+    ipcRenderer.sendSync("clear-data"); // clear all the app data, this freeze all the app :)
   };
 
   return (

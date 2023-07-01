@@ -11,10 +11,9 @@ import {
 } from "react-icons/ai";
 
 export const BookPreview = () => {
-  const [isVisible, setVisible] = useState(true);
+  const [isVisible, setVisible] = useState(false);
   const { book } = useStore((state) => ({ book: state.selected }), shallow);
   const { image, title, description, author, year, category } = book;
-  const style = isVisible ? "w-4/12" : "w-[2vw]";
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -22,46 +21,57 @@ export const BookPreview = () => {
   };
 
   return (
-    <div className={`${style} transition-all shadow`}>
-      <div className="fixed p-2 bg-base-200 ">
+    <div className={`${isVisible ? "w-[25rem]" : "w-7"} transition-all shadow`}>
+      <div className="fixed p-2 bg-base-200">
         <div className="flex gap-4 justify-between">
           <p className="link" onClick={handleChange}>
             {isVisible ? <AiOutlineArrowRight /> : <AiOutlineArrowLeft />}
           </p>
-          <BookOptions book={book} />
+
+          {title && <BookOptions book={book} />}
         </div>
         <div
           className={`my-2 ${isVisible ? "visible" : "invisible"} min-h-screen`}
         >
-          <div className="flex flex-row content-center items-center justify-center">
-            <img src={image} alt={title} className="h-[50vh]" />
-          </div>
-          <p className="text-md text-center font-bold py-1 truncate w-72">
-            {title}
-          </p>
-          <p className="text-sm py-1 h-[15vh] overflow-y-scroll">
-            {description}
-          </p>
-          <div className="divider"></div>
-          <div className="text-sm">
-            <div className="inline-flex content-center items-center gap-1">
-              <AiOutlineUser />
-              <p className="font-bold">Author: </p>
-              <p className="link">{author}</p>
+          {title ? (
+            <div className="w-72">
+              <div className="flex flex-row justify-center content-center items-center">
+                <img src={image} alt={title} className="h-[50vh]" />
+              </div>
+              <p className="py-1 font-bold text-center text-md truncate">
+                {title}
+              </p>
+              <p className="overflow-y-scroll py-1 text-sm h-[15vh]">
+                {description}
+              </p>
+              <div className="divider"></div>
+              <div className="text-sm">
+                <div className="inline-flex gap-1 content-center items-center">
+                  <AiOutlineUser />
+                  <p className="font-bold">Author: </p>
+                  <p className="link">{author}</p>
+                </div>
+                <br />
+                <div className="inline-flex gap-1 content-center items-center">
+                  <AiOutlineGold />
+                  <p className="font-bold">Category: </p>
+                  {category}
+                </div>
+                <br />
+                <div className="inline-flex gap-1 content-center items-center">
+                  <AiOutlineCalendar />
+                  <p className="font-bold">Year: </p>
+                  {year}
+                </div>
+              </div>
             </div>
-            <br />
-            <div className="inline-flex content-center items-center gap-1">
-              <AiOutlineGold />
-              <p className="font-bold">Category: </p>
-              {category}
+          ) : (
+            <div className="w-72">
+              <p className="pt-5 font-bold text-center">
+                no book to preview...
+              </p>
             </div>
-            <br />
-            <div className="inline-flex content-center items-center gap-1">
-              <AiOutlineCalendar />
-              <p className="font-bold">Year: </p>
-              {year}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

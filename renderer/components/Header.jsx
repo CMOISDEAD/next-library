@@ -4,13 +4,13 @@ import { Theme } from "./Theme";
 
 export const Header = () => {
   return (
-    <div className="navbar bg-base-200 fixed z-50 shadow">
+    <div className="fixed z-50 shadow navbar bg-base-200">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="w-5 h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -25,7 +25,7 @@ export const Header = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="p-2 mt-3 w-52 shadow menu menu-compact dropdown-content bg-base-100 rounded-box"
           >
             <li>
               <Link href="/home">Dashboard</Link>
@@ -33,9 +33,6 @@ export const Header = () => {
             <li>
               <a>Books</a>
             </li>
-            {/* <li> */}
-            {/*   <Link href="/account">Account</Link> */}
-            {/* </li> */}
             <li>
               <a>Configuration</a>
             </li>
@@ -44,7 +41,7 @@ export const Header = () => {
       </div>
       <div className="navbar-center">
         <Link href="/home">
-          <p className="btn btn-ghost normal-case text-xl">Reishi</p>
+          <p className="text-xl normal-case btn btn-ghost">Digital Reader X</p>
         </Link>
       </div>
       <div className="navbar-end">
@@ -52,7 +49,7 @@ export const Header = () => {
         <button className="btn btn-ghost btn-circle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            className="w-5 h-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -69,7 +66,7 @@ export const Header = () => {
           <div className="indicator">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="w-5 h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

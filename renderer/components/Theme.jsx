@@ -13,9 +13,9 @@ export const Theme = () => {
       </label>
       <ul
         tabIndex={0}
-        className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
+        className="p-2 mt-4 w-52 shadow menu dropdown-content bg-base-100 rounded-box"
       >
-        {["black", "lofi", "gruvbox", "gruvbox-light", "dracula"].map(
+        {["lofi", "black", "gruvbox", "gruvbox-light", "dracula"].map(
           (theme, i) => (
             <li
               key={i}

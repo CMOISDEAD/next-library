@@ -6,17 +6,16 @@ import { useStore } from "../store/store";
 const ipcRenderer = electron.ipcRenderer || false;
 
 export const AddModal = ({ trigger_id }) => {
+  const { categories } = useStore((state) => ({
+    categories: state.categories,
+  }));
   const [book, setBook] = useState({
     title: "",
     description: "",
     author: "",
-    category: "Mathematics",
+    category: categories[0] || "",
     path: "",
   });
-
-  const { categories } = useStore((state) => ({
-    categories: state.categories,
-  }));
 
   // manage the inputs changes
   const handleChange = (e) => {
@@ -44,18 +43,18 @@ export const AddModal = ({ trigger_id }) => {
     <>
       <input type="checkbox" id={trigger_id} className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-8/12 max-w-5xl relative flex justify-evenly">
+        <div className="flex relative justify-evenly w-8/12 max-w-5xl modal-box">
           <div className="flex-1">
             <label
               htmlFor={trigger_id}
-              className="btn btn-sm btn-circle absolute right-2 top-2"
+              className="absolute top-2 right-2 btn btn-sm btn-circle"
             >
               ✕
             </label>
             <h3 className="text-lg font-bold">Edit book metadata</h3>
             <p className="py-4">Edit the metadata of the book.</p>
             {/* title */}
-            <div className="form-control w-full max-w-xs">
+            <div className="w-full max-w-xs form-control">
               <label className="label">
                 <span className="label-text">Book title</span>
               </label>
@@ -63,12 +62,12 @@ export const AddModal = ({ trigger_id }) => {
                 type="text"
                 placeholder="Title"
                 name="title"
-                className="input input-bordered w-full max-w-xs"
+                className="w-full max-w-xs input input-bordered"
                 onChange={handleChange}
               />
             </div>
             {/* description */}
-            <div className="form-control w-full max-w-xs">
+            <div className="w-full max-w-xs form-control">
               <label className="label">
                 <span className="label-text">description</span>
               </label>
@@ -76,12 +75,12 @@ export const AddModal = ({ trigger_id }) => {
                 type="text"
                 placeholder="Description"
                 name="description"
-                className="input input-bordered w-full max-w-xs"
+                className="w-full max-w-xs input input-bordered"
                 onChange={handleChange}
               />
             </div>
             {/* Author */}
-            <div className="form-control w-full max-w-xs">
+            <div className="w-full max-w-xs form-control">
               <label className="label">
                 <span className="label-text">Book author</span>
               </label>
@@ -89,12 +88,12 @@ export const AddModal = ({ trigger_id }) => {
                 type="text"
                 placeholder="Author"
                 name="author"
-                className="input input-bordered w-full max-w-xs"
+                className="w-full max-w-xs input input-bordered"
                 onChange={handleChange}
               />
             </div>
             {/* year */}
-            <div className="form-control w-full max-w-xs">
+            <div className="w-full max-w-xs form-control">
               <label className="label">
                 <span className="label-text">Year</span>
               </label>
@@ -102,12 +101,12 @@ export const AddModal = ({ trigger_id }) => {
                 type="number"
                 placeholder="Year"
                 name="year"
-                className="input input-bordered w-full max-w-xs"
+                className="w-full max-w-xs input input-bordered"
                 onChange={handleChange}
               />
             </div>
             {/* category */}
-            <div className="form-control w-full max-w-xs">
+            <div className="w-full max-w-xs form-control">
               <label className="label">
                 <span className="label-text">Pick a category</span>
               </label>
@@ -124,7 +123,7 @@ export const AddModal = ({ trigger_id }) => {
               </select>
             </div>
             {/* image */}
-            <div className="form-control w-full max-w-xs">
+            <div className="w-full max-w-xs form-control">
               <label className="label">
                 <span className="label-text">Pick a book cover</span>
               </label>
@@ -132,7 +131,7 @@ export const AddModal = ({ trigger_id }) => {
                 type="text"
                 placeholder="url image"
                 name="image"
-                className="input input-bordered w-full max-w-xs"
+                className="w-full max-w-xs input input-bordered"
                 onChange={handleChange}
               />
             </div>
@@ -141,27 +140,30 @@ export const AddModal = ({ trigger_id }) => {
           <div className="flex-1">
             <h3 className="text-lg font-bold">Book Preview</h3>
             <p className="py-4">This is gonna looks like.</p>
-            <div className="max-w-[30vw] h-auto">
+            <div className="h-auto max-w-[30vw]">
               <Book {...book} />
             </div>
             {/* path */}
-            <div className="form-control w-full max-w-xs mb-2">
+            <div className="mb-2 w-full max-w-xs form-control">
               <label className="label">
                 <span className="label-text">Pick a book file</span>
               </label>
               <input
                 type="file"
-                className="file-input file-input-bordered w-full max-w-xs"
+                className="w-full max-w-xs file-input file-input-bordered"
                 name="path"
                 onChange={handlePath}
               />
             </div>
             <label
-              className="btn mt-2"
+              className="mt-2 btn"
               htmlFor={trigger_id}
-              // HACK: find a better way to do this
+              // TODO: find a better way to do this, and add a information message.
               disabled={
-                book.title != "" && book.author != "" && book.path != ""
+                book.title != "" &&
+                book.author != "" &&
+                book.path != "" &&
+                book.category != ""
                   ? false
                   : true
               }

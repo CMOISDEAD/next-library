@@ -128,7 +128,7 @@ ipcMain.on("set-theme", (_, arg) => {
 
 // Get theme
 ipcMain.on("get-theme", (event, _) => {
-  event.returnValue = store.get("theme", "dark");
+  event.returnValue = store.get("theme", "lofi"); // NOTE: should the default theme be managed here ?
 });
 
 // clear data

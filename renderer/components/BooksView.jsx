@@ -1,3 +1,4 @@
+// NOTE: this file should be named recentBooks.jsx
 import React from "react";
 import { Book } from "./Book";
 import { BsBook } from "react-icons/bs";
@@ -14,17 +15,21 @@ export const BooksView = () => {
 
   return (
     <>
-      <div className="text-md font-bold inline-flex content-center items-center gap-2">
+      <div className="inline-flex gap-2 content-center items-center font-bold text-md">
         <BsBook />
         Recent books
-        <span className="text-secondary text-sm font-normal italic">
+        <span className="text-sm italic font-normal text-secondary">
           ~ Continue with your last books
         </span>
       </div>
-      <div className="flex flex-row justify-start gap-4 overflow-auto">
-        {books.map((book, i) => {
-          return <Book {...book} key={i} />;
-        })}
+      <div className="flex overflow-auto flex-row gap-4 justify-start">
+        {books.length ? (
+          books.map((book, i) => {
+            return <Book {...book} key={i} />;
+          })
+        ) : (
+          <p className="text-xs italic">Try to read something, no..?</p>
+        )}
       </div>
     </>
   );
