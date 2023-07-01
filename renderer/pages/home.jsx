@@ -25,13 +25,13 @@ function Home() {
       theme,
       categories,
     });
-    return () => {};
+    return () => { };
   }, []);
 
   return (
     <>
       <Head>
-        <title>Reishi</title>
+        <title>Next Library</title>
       </Head>
       <div className="flex flex-row justify-between min-h-[81.1vh]">
         <div className="container mx-5">

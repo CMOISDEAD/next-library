@@ -1,6 +1,6 @@
 appId: com.doom.library
-productName: doom library
-copyright: Copyright © 2023 Camilo Davila
+productName: next library
+copyright: Copyright © 2023 CMOISDEAD
 directories:
   output: dist
   buildResources: resources

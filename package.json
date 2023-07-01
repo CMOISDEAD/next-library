@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "Doom-Library",
-  "description": "Doom library",
-  "version": "1.0.0",
+  "name": "next-library",
+  "description": "A very simple library manager for digital books.",
+  "version": "0.1.0",
   "author": "CMOISDEAD <camiloesteban661@gmail.com>",
   "main": "app/background.js",
   "scripts": {
