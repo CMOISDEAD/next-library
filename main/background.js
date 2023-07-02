@@ -48,7 +48,7 @@ ipcMain.on("get-books", (event, _) => {
   event.returnValue = data;
 });
 
-// Edit a book by his id
+// Edit a book by id
 ipcMain.on("edit-book", (event, arg) => {
   const books = store.get("books", []);
   const newList = books.map((book) => {
@@ -60,7 +60,7 @@ ipcMain.on("edit-book", (event, arg) => {
   event.returnValue = newList;
 });
 
-// Remove a specific book from storage with its id
+// Remove a specific book from storage by id
 ipcMain.on("remove-book", (event, arg) => {
   const books = store.get("books", []).filter((book) => book.id != arg);
   store.set("books", books);
@@ -70,7 +70,7 @@ ipcMain.on("remove-book", (event, arg) => {
   event.returnValue = { books, recent: newRecent };
 });
 
-// Add a book to recent list
+// Add a book to the recent list
 ipcMain.on("add-recent", (event, arg) => {
   const recent = arg;
   store.set("recent", recent);
@@ -88,12 +88,12 @@ ipcMain.on("add-current", (_, arg) => {
   store.set("current", arg);
 });
 
-// Get current selected book
+// Get the current selected book
 ipcMain.on("get-current", (event, _) => {
   event.returnValue = store.get("current", {});
 });
 
-// Get the pdf file from a book
+// Get the pdf path from a book
 ipcMain.on("get-pdf", async (event) => {
   const { filePaths } = await dialog.showOpenDialog({
     properties: ["openFile", "multiSelections"],
@@ -113,7 +113,7 @@ ipcMain.on("get-categories", (event, _) => {
   event.returnValue = store.get("categories", []);
 });
 
-// Remove categorie
+// Remove categories
 ipcMain.on("delete-category", (event, arg) => {
   const data = store.get("categories");
   const new_categories = data.filter((category) => category != arg);
