@@ -96,7 +96,8 @@ ipcMain.on("get-current", (event, _) => {
 // Get the pdf path from a book
 ipcMain.on("get-pdf", async (event) => {
   const { filePaths } = await dialog.showOpenDialog({
-    properties: ["openFile", "multiSelections"],
+    properties: ["openFile"],
+    filters: [{ name: "Documents", extensions: ["pdf", "docx", "epub"] }],
   });
   event.returnValue = filePaths[0];
 });

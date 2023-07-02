@@ -6,9 +6,6 @@ import { useStore } from "../store/store";
 const ipcRenderer = electron.ipcRenderer || false;
 
 export const AddModal = ({ trigger_id }) => {
-  const { categories } = useStore((state) => ({
-    categories: state.categories,
-  }));
   const [book, setBook] = useState({
     title: "",
     description: "",
@@ -16,6 +13,9 @@ export const AddModal = ({ trigger_id }) => {
     category: "",
     path: "",
   });
+  const { categories } = useStore((state) => ({
+    categories: state.categories,
+  }));
 
   // manage the inputs changes
   const handleChange = (e) => {
@@ -26,16 +26,16 @@ export const AddModal = ({ trigger_id }) => {
   // manage path of the pdf
   const handlePath = (e) => {
     e.preventDefault();
-    const { name: _title, path } = e.target.files[0];
+    const files = e.target.files;
+    if (!files[0]) return; // if user doesn't select a file.
+    const { path } = files[0];
     setBook({ ...book, path });
   };
 
   // add the book to the local state and the app storage
   const addBook = (e) => {
     e.preventDefault();
-    // add to electron storage
     const books = ipcRenderer.sendSync("add-book", book);
-    // add to app state
     useStore.setState({ books: books });
   };
 
@@ -147,7 +147,9 @@ export const AddModal = ({ trigger_id }) => {
             {/* path */}
             <div className="mb-2 w-full max-w-xs form-control">
               <label className="label">
-                <span className="label-text">Pick a book file</span>
+                <span className="label-text">
+                  Pick a book file (only pdf, epub, docs).
+                </span>
               </label>
               <input
                 type="file"

@@ -9,9 +9,6 @@ import { BookPreview } from "../components/BookPreview";
 const ipcRenderer = electron.ipcRenderer || false;
 
 function Home() {
-  if (ipcRenderer) {
-  }
-
   useEffect(() => {
     const books = ipcRenderer.sendSync("get-books") || [];
     const recently = ipcRenderer.sendSync("get-recent") || [];
@@ -25,7 +22,7 @@ function Home() {
       theme,
       categories,
     });
-    return () => { };
+    return () => {};
   }, []);
 
   return (

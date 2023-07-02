@@ -10,7 +10,7 @@ export const Footer = () => {
   return (
     <footer className="items-center p-4 shadow footer bg-base-200 text-base-content">
       <div className="grid-flow-col items-center">
-        <p>DOOM</p>
+        <p>By DOOM with a lot of ☕</p>
       </div>
       <div className="grid-flow-col gap-4 mr-5 md:justify-self-end md:place-self-center">
         <div
