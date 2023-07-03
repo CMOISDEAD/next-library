@@ -7,6 +7,7 @@
 - Multiple colorschemes
 - Custom categories
 - Manage book metadata
+- fancy UI
 - etc...
 
 ### (Posible) Comming features
@@ -29,5 +30,6 @@ npm run dev
 ```
 # TODOS 🤔
 - [ ] reach a stable version.
-- [ ] add notifications alerts.
 - [ ] fetch book information from an API.
+- [x] ~~add notifications alerts.~~
+
