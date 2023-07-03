@@ -1,9 +1,11 @@
 import electron from "electron";
 import { useStore } from "../store/store";
+import { useNotification } from "doom-react-notifications";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
 export const BookRemove = ({ id, title }) => {
+  const { showNotification } = useNotification();
   const trigger = `remove_book_${title}`;
 
   const handleRemove = (e) => {
@@ -11,6 +13,11 @@ export const BookRemove = ({ id, title }) => {
     const { books, recent } = ipcRenderer.sendSync("remove-book", id);
     ipcRenderer.send("add-current", {});
     useStore.setState({ books, selected: {}, recently: recent });
+    showNotification({
+      type: "warning",
+      title: "Book deleted",
+      message: `${title} successfully added.`,
+    });
   };
 
   return (

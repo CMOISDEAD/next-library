@@ -14,19 +14,17 @@ export const Theme = () => {
         tabIndex={0}
         className="p-2 mt-4 w-52 shadow menu dropdown-content bg-base-100 rounded-box"
       >
-        {["lofi", "black", "gruvbox", "gruvbox-light", "dracula"].map(
-          (theme, i) => (
-            <li
-              key={i}
-              onClick={() => {
-                useStore.setState({ theme });
-                ipcRenderer.send("set-theme", theme);
-              }}
-            >
-              <a>{theme}</a>
-            </li>
-          )
-        )}
+        {["light", "dark", "black", "dracula", "gruvbox"].map((theme, i) => (
+          <li
+            key={i}
+            onClick={() => {
+              useStore.setState({ theme });
+              ipcRenderer.send("set-theme", theme);
+            }}
+          >
+            <a>{theme}</a>
+          </li>
+        ))}
       </ul>
     </div>
   );

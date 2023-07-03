@@ -2,6 +2,7 @@ import electron from "electron";
 import { shallow } from "zustand/shallow";
 import { useStore } from "../store/store";
 import { Book } from "./Book";
+import { useNotification } from "doom-react-notifications";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
@@ -10,6 +11,7 @@ export const EditModal = ({ trigger_id }) => {
     (state) => ({ book: state.selected, categories: state.categories }),
     shallow
   );
+  const { showNotification } = useNotification();
 
   // manage the inputs changes
   const handleChange = (e) => {
@@ -27,10 +29,13 @@ export const EditModal = ({ trigger_id }) => {
   // add the book to the local state and the app storage
   const editBook = (e) => {
     e.preventDefault();
-    // add to electron storage
     const books = ipcRenderer.sendSync("edit-book", book);
-    // add to app state
     useStore.setState({ books });
+    showNotification({
+      type: "success",
+      title: "Book updated",
+      message: `${book.title} successfully updated.`,
+    });
   };
 
   return (

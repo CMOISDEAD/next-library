@@ -1,5 +1,6 @@
 import electron from "electron";
 import { useState } from "react";
+import { useNotification } from "doom-react-notifications";
 import { useStore } from "../store/store";
 
 const ipcRenderer = electron.ipcRenderer || false;
@@ -9,6 +10,7 @@ export const AddCategory = ({ trigger_id }) => {
   const { categories } = useStore((state) => ({
     categories: state.categories,
   }));
+  const { showNotification } = useNotification();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -19,6 +21,11 @@ export const AddCategory = ({ trigger_id }) => {
     e.preventDefault();
     useStore.setState({ categories: [...categories, category] });
     ipcRenderer.send("add-categories", category);
+    showNotification({
+      type: "success",
+      title: "Category added",
+      message: `${category} successfully added.`,
+    });
   };
 
   return (

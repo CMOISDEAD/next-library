@@ -5,6 +5,7 @@ import { Toolbar } from "./Toolbar";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useStore } from "../store/store";
 import { shallow } from "zustand/shallow";
+import { useNotification } from "doom-react-notifications";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
@@ -16,6 +17,19 @@ export const BookList = () => {
     }),
     shallow
   );
+  const { showNotification } = useNotification();
+
+  const handleRemoveCategory = (e) => {
+    const { value: category } =
+      e.currentTarget.attributes.getNamedItem("data-name");
+    const newCategories = ipcRenderer.sendSync("delete-category", category);
+    useStore.setState({ categories: newCategories });
+    showNotification({
+      type: "warning",
+      title: "Category deleted",
+      message: `${category} successfully removed.`,
+    });
+  };
 
   return (
     <>
@@ -39,13 +53,8 @@ export const BookList = () => {
                 </div>
                 <div
                   className="cursor-pointer"
-                  onClick={() => {
-                    const newCategories = ipcRenderer.sendSync(
-                      "delete-category",
-                      category
-                    );
-                    useStore.setState({ categories: newCategories });
-                  }}
+                  onClick={handleRemoveCategory}
+                  data-name={category}
                 >
                   <AiOutlineDelete />
                 </div>

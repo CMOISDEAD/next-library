@@ -20,6 +20,9 @@ dependencies:
   daisyui:
     specifier: ^2.50.0
     version: 2.51.5(autoprefixer@10.4.14)(postcss@8.4.21)
+  doom-react-notifications:
+    specifier: ^0.1.12
+    version: 0.1.12
   electron-serve:
     specifier: ^1.1.0
     version: 1.1.0
@@ -2577,6 +2580,13 @@ packages:
     dev: true
     optional: true
 
+  /doom-react-notifications@0.1.12:
+    resolution: {integrity: sha512-N6AVgChiLYcqnl4o6qSGXKQ430jBag2EnCDQY7Pai6cn98w7b1VoI39kaCtAonoI3ZvbFvuuGjqelJMO+HRvSQ==}
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /dot-prop@6.0.1:
     resolution: {integrity: sha512-tE7ztYzXHIeyvc7N+hR3oi7FIbf/NIjVP9hmAt3yMXzrQ072/fpjGLx2GxNxGxUl5V73MEqYzioOMoVhGMJ5cA==}
     engines: {node: '>=10'}
@@ -3957,7 +3967,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: true
 
   /react-icons@4.8.0(react@18.2.0):
     resolution: {integrity: sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==}
@@ -4112,7 +4121,6 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-    dev: true
 
   /schema-utils@3.1.1:
     resolution: {integrity: sha512-Y5PQxS4ITlC+EahLuXaY86TXfR7Dc5lw294alXOq86JAHCihAIZfqv8nNCWvaEJvaC51uN9hbLGeV0cFBdH+Fw==}

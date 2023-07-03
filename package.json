@@ -16,6 +16,7 @@
     "@types/react": "^18.0.27",
     "autoprefixer": "^10.4.13",
     "daisyui": "^2.50.0",
+    "doom-react-notifications": "^0.1.12",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
     "postcss": "^8.4.21",

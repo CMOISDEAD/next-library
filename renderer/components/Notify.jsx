@@ -1,6 +1,9 @@
-export const Notify = () => {
+export const Notify = ({ type, title, message, onClick }) => {
   return (
-    <div className="fixed right-2 bottom-2 shadow-lg w-[30vw] alert alert-info">
+    <div
+      className={`my-2 alert alert-${type.toLowerCase()} cursor-pointer`}
+      onClick={onClick}
+    >
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +18,10 @@ export const Notify = () => {
             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           ></path>
         </svg>
-        <span>New software update available.</span>
+        <div>
+          <h3 className="font-bold">{title}</h3>
+          <div className="text-xs">{message}</div>
+        </div>
       </div>
     </div>
   );

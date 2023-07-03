@@ -2,6 +2,7 @@ import electron from "electron";
 import { useState } from "react";
 import { Book } from "./Book";
 import { useStore } from "../store/store";
+import { useNotification } from "doom-react-notifications";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
@@ -16,6 +17,7 @@ export const AddModal = ({ trigger_id }) => {
   const { categories } = useStore((state) => ({
     categories: state.categories,
   }));
+  const { showNotification } = useNotification();
 
   // manage the inputs changes
   const handleChange = (e) => {
@@ -37,6 +39,11 @@ export const AddModal = ({ trigger_id }) => {
     e.preventDefault();
     const books = ipcRenderer.sendSync("add-book", book);
     useStore.setState({ books: books });
+    showNotification({
+      type: "success",
+      title: "Book added",
+      message: `${book.title} successfully added.`,
+    });
   };
 
   return (
@@ -164,9 +171,9 @@ export const AddModal = ({ trigger_id }) => {
               // TODO: find a better way to do this, and add a information message.
               disabled={
                 book.title != "" &&
-                book.author != "" &&
-                book.path != "" &&
-                book.category != ""
+                  book.author != "" &&
+                  book.path != "" &&
+                  book.category != ""
                   ? false
                   : true
               }

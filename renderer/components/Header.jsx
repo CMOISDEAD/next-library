@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { useNotification } from "doom-react-notifications";
 import { Theme } from "./Theme";
 
 export const Header = () => {
+  const { notificationList, wipeNotifications } = useNotification();
+
   return (
     <div className="fixed z-50 shadow navbar bg-base-200">
       <div className="navbar-start">
@@ -27,10 +30,10 @@ export const Header = () => {
             className="p-2 mt-3 w-52 shadow menu menu-compact dropdown-content bg-base-100 rounded-box"
           >
             <li>
-              <Link href="/home">Dashboard</Link>
+              <Link href="/home">Home</Link>
             </li>
             <li>
-              <a>Books</a>
+              <a>Authors</a>
             </li>
             <li>
               <a>Configuration</a>
@@ -62,7 +65,9 @@ export const Header = () => {
           </svg>
         </button>
         <button className="btn btn-ghost btn-circle">
-          <div className="indicator">
+          {/* split this login in modules, and show a list of all notifications */}
+          {/* (maybe is a dumb idea for now.) */}
+          <div className="indicator" onClick={wipeNotifications}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 h-5"
@@ -77,7 +82,9 @@ export const Header = () => {
                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
               />
             </svg>
-            <span className="badge badge-xs badge-primary indicator-item"></span>
+            <span className="badge badge-xs badge-primary indicator-item">
+              {notificationList.length}
+            </span>
           </div>
         </button>
       </div>
