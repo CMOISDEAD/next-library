@@ -36,7 +36,7 @@ export const Header = () => {
               <a>Authors</a>
             </li>
             <li>
-              <a>Configuration</a>
+              <Link href="/config">Configuration</Link>
             </li>
           </ul>
         </div>

@@ -1,13 +1,34 @@
+import electron from "electron";
+import { useEffect } from "react";
+import { Notify } from "../components/Notify";
+import { useStore } from "../store/store";
+import Layout from "../components/layout";
+import "../styles/global.css";
+
 import {
   NotificationProvider,
   NotificationConsumer,
 } from "doom-react-notifications";
-import Layout from "../components/layout";
 import "doom-react-notifications/dist/style.css";
-import "../styles/global.css";
-import { Notify } from "../components/Notify";
+
+const ipcRenderer = electron.ipcRenderer || false;
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    const books = ipcRenderer.sendSync("get-books") || [];
+    const recently = ipcRenderer.sendSync("get-recent") || [];
+    const selected = ipcRenderer.sendSync("get-current") || {};
+    const theme = ipcRenderer.sendSync("get-theme") || [];
+    const categories = ipcRenderer.sendSync("get-categories") || [];
+    useStore.setState({
+      books,
+      recently,
+      selected,
+      theme,
+      categories,
+    });
+  }, []);
+
   return (
     <NotificationProvider>
       <Layout>

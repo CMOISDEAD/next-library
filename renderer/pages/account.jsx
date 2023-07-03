@@ -1,14 +1,14 @@
 import { Stats } from "../components/Stats";
 
-const account = () => {
+const Account = () => {
   return (
     <>
       <p className="text-4xl font-bold text-center capitalize text-primary">
-        Account overview
+        Account overview 🥰
       </p>
       <Stats />
     </>
   );
 };
 
-export default account;
+export default Account;
