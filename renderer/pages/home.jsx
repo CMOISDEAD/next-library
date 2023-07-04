@@ -1,30 +1,9 @@
-import electron from "electron";
-import { useEffect } from "react";
 import Head from "next/head";
-import { BooksView } from "../components/BooksView";
-import { BookList } from "../components/BookList";
-import { useStore } from "../store/store";
-import { BookPreview } from "../components/BookPreview";
-
-const ipcRenderer = electron.ipcRenderer || false;
+import { BooksView } from "../components/home/BooksView";
+import { BookList } from "../components/home/BookList";
+import { BookPreview } from "../components/home/BookPreview";
 
 function Home() {
-  useEffect(() => {
-    const books = ipcRenderer.sendSync("get-books") || [];
-    const recently = ipcRenderer.sendSync("get-recent") || [];
-    const selected = ipcRenderer.sendSync("get-current") || [];
-    const theme = ipcRenderer.sendSync("get-theme") || [];
-    const categories = ipcRenderer.sendSync("get-categories") || [];
-    useStore.setState({
-      books,
-      recently,
-      selected,
-      theme,
-      categories,
-    });
-    return () => {};
-  }, []);
-
   return (
     <>
       <Head>

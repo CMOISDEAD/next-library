@@ -1,7 +1,7 @@
 import electron from "electron";
 import { useState } from "react";
 import { useNotification } from "doom-react-notifications";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 
 const ipcRenderer = electron.ipcRenderer || false;
 

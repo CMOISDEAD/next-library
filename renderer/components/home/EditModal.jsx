@@ -1,6 +1,6 @@
 import electron from "electron";
 import { shallow } from "zustand/shallow";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 import { Book } from "./Book";
 import { useNotification } from "doom-react-notifications";
 
@@ -22,7 +22,9 @@ export const EditModal = ({ trigger_id }) => {
   // manage the pdf path
   const handlePath = (e) => {
     e.preventDefault();
-    const { path } = e.target.files[0];
+    const files = e.target.files;
+    if (!files[0]) return;
+    const { path } = files[0];
     book.path = path;
   };
 
@@ -158,7 +160,6 @@ export const EditModal = ({ trigger_id }) => {
                 className="w-full max-w-xs file-input file-input-bordered"
                 name="path"
                 onChange={handlePath}
-                defaultValue={book.path}
               />
             </div>
             <label className="mt-2 btn" htmlFor={trigger_id} onClick={editBook}>

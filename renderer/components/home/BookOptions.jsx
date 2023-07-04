@@ -25,7 +25,7 @@ export const BookOptions = ({ book }) => {
         </li>
       </ul>
       <BookRemove id={id} title={title} />
-      <EditModal trigger_id="edit_book" selectBook={book} />
+      <EditModal trigger_id="edit_book" />
     </div>
   );
 };

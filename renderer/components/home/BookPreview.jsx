@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 import { BookOptions } from "./BookOptions";
 import { shallow } from "zustand/shallow";
 import {
@@ -22,8 +22,9 @@ export const BookPreview = () => {
 
   return (
     <div
-      className={`${isVisible ? "w-[25rem]" : "w-7"
-        } transition-all shadow z-10`}
+      className={`${
+        isVisible ? "w-[25rem]" : "w-7"
+      } transition-all shadow z-10`}
     >
       <div className="fixed p-2 bg-base-200">
         <div className="flex gap-4 justify-between">

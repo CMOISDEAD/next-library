@@ -1,11 +1,11 @@
 import electron from "electron";
-import { Book } from "./Book";
 import { BsBookshelf } from "react-icons/bs";
-import { Toolbar } from "./Toolbar";
 import { AiOutlineDelete } from "react-icons/ai";
-import { useStore } from "../store/store";
 import { shallow } from "zustand/shallow";
 import { useNotification } from "doom-react-notifications";
+import { Book } from "./Book";
+import { Toolbar } from "./Toolbar";
+import { useStore } from "../../store/store";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
