@@ -1,7 +1,7 @@
 // NOTE: this file should be named recentBooks.jsx
 import { Book } from "./Book";
 import { BsBook } from "react-icons/bs";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 import { shallow } from "zustand/shallow";
 
 export const BooksView = () => {

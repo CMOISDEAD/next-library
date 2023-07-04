@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 import { BookOptions } from "./BookOptions";
 import { shallow } from "zustand/shallow";
 import {

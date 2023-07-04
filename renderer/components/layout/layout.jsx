@@ -1,6 +1,6 @@
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 
 const Layout = ({ children }) => {
   const { theme } = useStore((state) => ({ theme: state.theme }));

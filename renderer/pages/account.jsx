@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Stats } from "../components/Stats";
+import { Stats } from "../components/account/Stats";
 
 const Account = () => {
   return (

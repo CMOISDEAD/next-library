@@ -1,18 +1,18 @@
 import electron from "electron";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
 export const Theme = () => {
   const { current } = useStore((state) => ({ current: state.theme }));
   return (
-    <div className="dropdown dropdown-end">
+    <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost rounded-btn">
         {current}
       </label>
       <ul
         tabIndex={0}
-        className="p-2 mt-4 w-52 shadow menu dropdown-content bg-base-100 rounded-box"
+        className="p-2 w-52 shadow menu dropdown-content bg-base-200 rounded-box"
       >
         {["light", "dark", "black", "dracula", "gruvbox", "oxocarbon"].map(
           (theme, i) => (

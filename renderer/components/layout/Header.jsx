@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { AiOutlineBell, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { useNotification } from "doom-react-notifications";
-import { Theme } from "./Theme";
 
 export const Header = () => {
   const { notificationList, wipeNotifications } = useNotification();
@@ -35,7 +34,6 @@ export const Header = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        <Theme />
         <button className="btn btn-ghost btn-circle">
           <AiOutlineSearch className="text-2xl" />
         </button>

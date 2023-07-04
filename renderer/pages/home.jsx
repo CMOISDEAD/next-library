@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { BooksView } from "../components/BooksView";
-import { BookList } from "../components/BookList";
-import { BookPreview } from "../components/BookPreview";
+import { BooksView } from "../components/home/BooksView";
+import { BookList } from "../components/home/BookList";
+import { BookPreview } from "../components/home/BookPreview";
 
 function Home() {
   return (

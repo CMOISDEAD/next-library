@@ -1,8 +1,8 @@
 import electron from "electron";
 import { useEffect } from "react";
-import { Notify } from "../components/Notify";
 import { useStore } from "../store/store";
-import Layout from "../components/layout";
+import { Notify } from "../components/layout/Notify";
+import Layout from "../components/layout/layout";
 import "../styles/global.css";
 
 import {
