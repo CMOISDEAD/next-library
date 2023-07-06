@@ -20,7 +20,7 @@ We welcome contributions to this virtual library project! Feel free to contribut
 2. Locate the downloaded AppImage file.
 3. Make the AppImage executable by right-clicking on it, selecting "Properties," navigating to the "Permissions" tab, and enabling the "Allow executing file as program" option.
 4. Double-click the AppImage file to launch the virtual library application.
-5.Start using the virtual library and enjoy managing your book collection effortlessly.
+5. Start using the virtual library and enjoy managing your book collection effortlessly.
 
 Please note that the provided steps assume familiarity with the operating system and may vary depending on the platform or distribution being used.
 
