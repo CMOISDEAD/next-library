@@ -1,8 +1,8 @@
 import { app, ipcMain, dialog } from "electron";
-import serve from "electron-serve";
-import { createWindow } from "./helpers";
-import Store from "electron-store";
 import { v4 as uuidv4 } from "uuid";
+import serve from "electron-serve";
+import Store from "electron-store";
+import { createWindow } from "./helpers";
 
 const isProd = process.env.NODE_ENV === "production";
 const store = new Store();
