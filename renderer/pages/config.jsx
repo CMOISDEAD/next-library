@@ -5,8 +5,16 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { Theme } from "../components/config/Theme";
+import electron from "electron";
+
+const ipcRenderer = electron.ipcRenderer || false;
 
 function Config() {
+  const handleClear = (e) => {
+    e.preventDefault();
+    ipcRenderer.sendSync("clear-data"); // clear all the app data, this freeze all the app :)
+  };
+
   return (
     <>
       <Head>
@@ -35,33 +43,49 @@ function Config() {
               <h3 className="text-2xl font-bold uppercase text-primary">
                 Dashboard config
               </h3>
-              <div className="w-full max-w-xs form-control">
-                <label className="label">
-                  <span className="label-text">theme:</span>
-                </label>
-                <Theme />
-              </div>
-              <div className="w-full max-w-xs form-control">
-                <label className="label">
-                  <span className="label-text">pdf Reader:</span>
-                </label>
-                <input
-                  id="pdf-reader"
-                  type="text"
-                  name="pdf-reader"
-                  className="w-full max-w-xs input input-bordered"
-                  placeholder="zathura"
-                />
-              </div>
-              <div className="w-full max-w-xs form-control">
-                <label className="label">
-                  <span className="label-text">sort books by:</span>
-                </label>
-                <select className="select select-bordered" defaultValue="title">
-                  <option value="title">title</option>
-                  <option value="year">year</option>
-                  <option value="author">author</option>
-                </select>
+              <div className="grid grid-cols-2 grid-rows-3 gap-4">
+                <div className="w-full max-w-xs form-control">
+                  <label className="label">
+                    <span className="label-text">theme:</span>
+                  </label>
+                  <Theme />
+                </div>
+                <div className="w-full max-w-xs form-control">
+                  <label className="label">
+                    <span className="label-text">pdf Reader:</span>
+                  </label>
+                  <input
+                    id="pdf-reader"
+                    type="text"
+                    name="pdf-reader"
+                    className="w-full max-w-xs input input-bordered"
+                    placeholder="zathura"
+                  />
+                </div>
+                <div className="w-full max-w-xs form-control">
+                  <label className="label">
+                    <span className="label-text">sort books by:</span>
+                  </label>
+                  <select
+                    className="select select-bordered"
+                    defaultValue="title"
+                  >
+                    <option value="title">title</option>
+                    <option value="year">year</option>
+                    <option value="author">author</option>
+                  </select>
+                </div>
+                <div className="w-full max-w-xs form-control">
+                  <div className="label">
+                    <span className="label-text">Clear all the data:</span>
+                  </div>
+                  <button
+                    className="btn btn-error btn-wide"
+                    onClick={handleClear}
+                  >
+                    Clear data
+                  </button>
+                </div>
               </div>
               <button className="mt-5 btn btn-wide" disabled>
                 Save
