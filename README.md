@@ -28,6 +28,6 @@ Please note that the provided steps assume familiarity with the operating system
 Contributions to the Next Library project are welcome! If you find any issues or have suggestions for improvement, please submit an issue or create a pull request. Ensure that your contributions adhere to the guidelines specified in the CONTRIBUTING.md file.
 
 # License
-The Next Library project is licensed under the MIT License.
+The Next Library project is licensed under the GPL-3.0 License.
 
 Feel free to modify the template according to your project's specific details and requirements. Good luck with your virtual library project!
