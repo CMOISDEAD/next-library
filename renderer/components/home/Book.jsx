@@ -56,7 +56,7 @@ export const Book = ({
       new_recent = new_recent.filter((element) => element.id != id);
     }
     new_recent.unshift(book);
-    if (new_recent.length > 4) new_recent.pop();
+    if (new_recent.length > 5) new_recent.pop();
     useStore.setState(() => ({
       recently: [...new_recent],
     }));
@@ -66,7 +66,7 @@ export const Book = ({
   return (
     <>
       <div
-        className="flex flex-col gap-4 justify-start my-1 rounded-sm border shadow-md transition-all cursor-pointer hover:shadow-xl bg-base-200 border-accent w-[15rem] h-[21.5rem] tooltip"
+        className="flex flex-col gap-4 justify-start my-1 rounded-sm border shadow-md transition-all cursor-pointer hover:shadow-xl bg-base-200 border-accent w-[14rem] h-[21.5rem] tooltip"
         onClick={handleSelect}
         onDoubleClick={handleOpen}
         data-tip={title}

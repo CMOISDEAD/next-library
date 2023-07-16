@@ -59,7 +59,7 @@ export const BookList = () => {
                   <AiOutlineDelete />
                 </div>
               </div>
-              <div className="grid grid-cols-2 grid-flow-row gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+              <div className="flex overflow-auto flex-row flex-wrap gap-4 justify-start w-full">
                 {books.length ? (
                   books
                     .filter((book) => book.category == category)
